@@ -89,6 +89,11 @@ public class TelaPrincipal extends JFrame implements ActionListener {
                     new TelaCadastroCidade();
             jdp.add(telaCadastroCidade);
         }
+         if(e.getSource() == jmiColaborador){
+            TelaCadastroColaborador telaCadastroColaborador =
+                    new TelaCadastroColaborador();
+            jdp.add(telaCadastroColaborador);
+        }
     }
 }
 

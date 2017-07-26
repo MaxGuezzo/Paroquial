@@ -15,9 +15,9 @@ public class TelaCadastroEstado extends TelaCadastro {
     
     public TelaCadastroEstado() {
       super("Cadastro de Estado");
-      adicionarComponente(1, 1, 1, 3, campoCodigo);
-      adicionarComponente(2, 1, 1, 1, campoNome);
-      adicionarComponente(2, 3, 1, 1, campoSigla);
+      adicionarComponente(1, 1, 1, 1, campoCodigo);
+      adicionarComponente(3, 1, 1, 1, campoNome);
+      adicionarComponente(3, 3, 1, 1, campoSigla);
       habilitarCampos(false);
       pack();
    }

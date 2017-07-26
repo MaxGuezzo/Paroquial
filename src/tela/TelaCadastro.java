@@ -54,11 +54,12 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     public void adicionarComponente(int linha, int coluna,int linhas,int colunas,
             MeuComponente componente) {
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.insets = new Insets(2, 1, 0, 1);
         gbc.gridy = linha;
         gbc.gridx = coluna;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
         String nome = "<html><body>" + componente.getNome();
         if (componente.eObrigatorio()) {
             nome = nome + "<font color=red>*</font>";
@@ -66,7 +67,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
         nome = nome + ": </body></html>";
         JLabel label = new JLabel(nome);
         jpComponentes.add(label, gbc);
-        gbc.gridx++;
+        gbc.gridy++;
         gbc.gridheight = linhas;
         gbc.gridwidth = colunas;
         gbc.anchor = GridBagConstraints.WEST;
