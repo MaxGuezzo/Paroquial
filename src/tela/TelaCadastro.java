@@ -234,4 +234,8 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
         temDadosNaTela = true;
         habilitarBotoes();
     }
+    
+    public String pesquisa(String texto){
+       return (""); 
+    }
 }

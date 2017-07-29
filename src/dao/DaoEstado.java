@@ -18,8 +18,13 @@ public class DaoEstado {
             "SELECT * FROM ESTADO WHERE IDESTADO = ?";
     public static final String SQL_PESQUISAR =
             "SELECT IDESTADO, NOME, SIGLA FROM ESTADO ORDER BY NOME";
+    
     public static final String SQLCOMBOBOX = "SELECT IDESTADO, NOME || '-' || SIGLA FROM ESTADO ORDER BY NOME";
     
+    public String pesquisa(String texto){
+        String sql = "SELECT * FROM ESTADO WHERE NOME LIKE'"+texto+"%' ORDER BY NOME";
+        return(sql);
+    }
     public DaoEstado(Estado estado) {
         this.estado = estado;
     }

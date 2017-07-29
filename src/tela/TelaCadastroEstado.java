@@ -68,4 +68,10 @@ public class TelaCadastroEstado extends TelaCadastro {
       getPersistencia();
       super.preencherDados(pk);
    }
+   
+    @Override
+   public String pesquisa(String texto){
+       String sql = daoEstado.pesquisa(texto);
+       return(sql);
+   }
 }

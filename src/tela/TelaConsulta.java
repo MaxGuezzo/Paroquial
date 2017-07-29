@@ -1,6 +1,7 @@
 package tela;
 
 import banco.Conexao;
+import componente.MeuCampoTexto;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +21,11 @@ import javax.swing.table.TableCellRenderer;
 
 public class TelaConsulta extends JInternalFrame implements MouseListener, KeyListener {
     private TelaCadastro telaChamadora;
-    private JLabel dica = new JLabel("Pesquisar");
+    private JPanel jppesquisa = new JPanel();
+    private JPanel  jptabela = new JPanel();
+    private JPanel  jpbotao = new JPanel();
+    private MeuCampoTexto campoPesquisa = new MeuCampoTexto(30, 20, true, "Pesquisar");
+    private JLabel descricao = new JLabel("Buscar:");
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tabela = new JTable(dtm) {
         @Override
@@ -50,12 +56,18 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
         tabela.getTableHeader().setReorderingAllowed(false);
         insereColunas(colunas);
         insereDados(sql);
-        if (dtm.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null,
-                    "Não existem dados cadastrados.");
+        if (dtm.getRowCount() == 0) { 
+            JOptionPane.showMessageDialog
+        (null, "Não existem dados cadastrados.");
             telaChamadora.pesquisaSemDados();
             return;
         }
+        jppesquisa.add(descricao);
+        jppesquisa.add(campoPesquisa);
+        jptabela.add(jsp);
+        getContentPane().add("North", jppesquisa);
+        getContentPane().add("Center", jptabela);
+//        jpbotao.add(jsp);
         getContentPane().add(jsp);
         pack();
         setVisible(true);
@@ -63,6 +75,7 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
         TelaPrincipal.jdp.moveToFront(this);
         centralizaTela();
         tabela.addMouseListener(this);
+        campoPesquisa.addKeyListener(this);
     }
 
     public void centralizaTela() {
@@ -80,9 +93,16 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
     }
 
     public void insereDados(String sql) {
+        esvaziarTabela();
         List<String[]> dados = Conexao.executaQuery(sql);
         for (int i = 0; i < dados.size(); i++) {
             dtm.addRow(dados.get(i));
+        }
+    }
+    
+    public void esvaziarTabela(){
+        for(int i = dtm.getRowCount(); i!=0 ;i--){
+            dtm.removeRow(i-1);
         }
     }
 
@@ -113,16 +133,18 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String sql = telaChamadora.pesquisa(campoPesquisa.getText());
+         insereDados(sql);       
+     }
+
 }
