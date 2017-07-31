@@ -25,13 +25,12 @@ public class DaoColaborador {
         public static final String SQL_PESQUISAR =
             "SELECT IDCOLABORADOR, NOME, CPF "
             + "FROM COLABORADOR ORDER BY NOME";
-    
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
                 
-    
+        public String pesquisa(String texto){
+        String sql = "SELECT * FROM COLABORADOR WHERE NOME LIKE'"+texto+"%' ORDER BY NOME";
+        return(sql);
+    }
+        
     public DaoColaborador(Colaborador colaborador) {
         this.colaborador = colaborador;
     }

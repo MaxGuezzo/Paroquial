@@ -17,12 +17,12 @@ public class TelaCadastroColaborador extends TelaCadastro {
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(35, 50, true, "Nome");
 //    public MeuCampoData campoDatanascimento = new MeuCampoData(10, true, true, "Data de Nasc");           
-    public MeuCampoTexto campoTelefone = new MeuCampoTexto(14, 10, true, "Telefone");           
-    public MeuCampoTexto campoCelular = new MeuCampoTexto(14, 10, true, "Celular");           
-    public MeuCampoTexto campoEndereco = new MeuCampoTexto(22, 10, true, "Endereco");           
-    public MeuCampoTexto campoNumcasa = new MeuCampoTexto(10, 10, true, "Numero");           
-    public MeuCampoTexto campoBairro = new MeuCampoTexto(19, 10, true, "Bairro");           
-    public MeuCampoTexto campoRg = new MeuCampoTexto(10, 10, true, "RG");           
+    public MeuCampoTexto campoTelefone = new MeuCampoTexto(14, 14, true, "Telefone");           
+    public MeuCampoTexto campoCelular = new MeuCampoTexto(14, 14, true, "Celular");           
+    public MeuCampoTexto campoEndereco = new MeuCampoTexto(22, 20, true, "Endereco");           
+    public MeuCampoTexto campoNumcasa = new MeuCampoTexto(10, 4, true, "Numero");           
+    public MeuCampoTexto campoBairro = new MeuCampoTexto(19, 50, true, "Bairro");           
+    public MeuCampoTexto campoRg = new MeuCampoTexto(10, 12, true, "RG");           
     public MeuCampoCpf campoCpf = new MeuCampoCpf(10, true, true, "CPF");           
     public MeuCampoCheckBox campoSituacao = new MeuCampoCheckBox(true, true, "Ativo");
     private MeuDBComboBox campoCidade = new MeuDBComboBox(true, DaoCidade.SQLCOMBOBOX, "Cidade"); 
@@ -58,7 +58,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       colaborador.setBairro((String) campoBairro.getValor());
       colaborador.setRg((String) campoRg.getValor());
       colaborador.setCpf((String) campoCpf.getValor());
-      colaborador.setSituacao((String) campoSituacao.getValor());
+//      colaborador.setSituacao((String) campoSituacao.getValor());
       colaborador.setIdcidade((int)campoCidade.getValor());      
    }
    
@@ -112,6 +112,9 @@ public class TelaCadastroColaborador extends TelaCadastro {
       getPersistencia();
       super.preencherDados(pk);
    }
-
+   public String pesquisa(String texto){
+       String sql = daoColaborador.pesquisa(texto);
+       return(sql);
+   }
 
 }

@@ -112,4 +112,7 @@ public class Colaborador {
     public void setIdcidade(int idcidade) {
         this.idcidade = idcidade;
     }
+
+
+
 }

@@ -109,7 +109,7 @@ public class MeuCampoCpf extends JFormattedTextField implements MeuComponente {
 
     @Override
     public Object getValor() {
-        return Integer.parseInt(getText());
+        return getText();
     }
 
     @Override
