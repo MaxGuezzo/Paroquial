@@ -1,13 +1,13 @@
 package tela;
 
+import com.sun.glass.ui.Cursor;
 import componente.MeuCampoInteiro;
 import componente.MeuCampoTexto;
 import componente.MeuDBComboBox;
-import componente.MeuJButton;
 import dao.DaoCidade;
 import dao.DaoEstado;
-import javax.swing.JButton;
 import pojo.Estado;
+import static tela.TelaPrincipal.jdp;
 
 public class TelaCadastroCidade extends TelaCadastro {
     public Estado estado = new Estado();
@@ -15,14 +15,13 @@ public class TelaCadastroCidade extends TelaCadastro {
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(20, 50, true, "Nome");
     private MeuDBComboBox campoEstado = new MeuDBComboBox(true, DaoEstado.SQLCOMBOBOX, "Estado"); 
-    private MeuJButton CampoAdicionar = new MeuJButton(true,"Teste");
+
     
     public TelaCadastroCidade() {
       super("Cadastro de Cidade");
       adicionarComponente(1, 1, 1, 3, campoCodigo);
-      adicionarComponente(2, 1, 1, 1, campoNome);
-      adicionarComponente(2, 3, 1, 1, campoEstado);
-      adicionarComponente(2, 4, 1, 5, CampoAdicionar);
+      adicionarComponente(3, 1, 1, 1, campoNome);
+      adicionarComponente(3, 3, 1, 1, campoEstado);
       habilitarCampos(false);
       pack();
    }
@@ -72,5 +71,12 @@ public class TelaCadastroCidade extends TelaCadastro {
       daoEstado.consultar();
       getPersistencia();
       super.preencherDados(pk);
+   }
+   
+   public static void chamarTela(){
+       TelaCadastroEstado telaCadastroEstado = new TelaCadastroEstado();
+       jdp.add(telaCadastroEstado);
+       telaCadastroEstado.setLocation(50, 50);
+       jdp.moveToFront(telaCadastroEstado);
    }
 }

@@ -22,6 +22,10 @@ public class DaoColaborador {
     private final String SQL_CONSULTAR =
             "SELECT * FROM COLABORADOR WHERE IDCOLABORADOR = ?";
     
+        public static final String SQL_PESQUISAR =
+            "SELECT IDCOLABORADOR, NOME, CPF "
+            + "FROM COLABORADOR ORDER BY NOME";
+    
 //    public static final String SQL_PESQUISAR =
 //            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
 //            + "FROM CEB, COLABORADOR "

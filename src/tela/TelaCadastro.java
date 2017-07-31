@@ -1,6 +1,7 @@
 package tela;
 
 import componente.MeuComponente;
+import componente.MeuDBComboBox;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -54,7 +55,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     public void adicionarComponente(int linha, int coluna,int linhas,int colunas,
             MeuComponente componente) {
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(2, 1, 0, 1);
+        gbc.insets = new Insets(-1, 5, 0, 5);
         gbc.gridy = linha;
         gbc.gridx = coluna;
         gbc.gridheight = 1;
@@ -129,7 +130,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
         habilitarBotoes();
     }
 
-    private void confirmar() {
+    public void confirmar() {
         if (estadoTela == INCLUINDO) {
             if (!verificarCampos() || !incluirBD()) {
                 return;
@@ -191,12 +192,13 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
         String invalidos = "";
         for (int i = 0; i < campos.size(); i++) {
             if (!campos.get(i).eValido()) {
+                System.out.println(i);
                 invalidos = invalidos + campos.get(i).getNome() + "\n";                
             }
         }
         if (!invalidos.isEmpty()) {
             JOptionPane.showMessageDialog(null, 
-                    "Os campos abaixo são estão válidos:\n\n" +
+                    "Os campos abaixo são estão Inválidos:\n\n" +
                             invalidos);
         }
 
@@ -238,4 +240,5 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     public String pesquisa(String texto){
        return (""); 
     }
+    
 }

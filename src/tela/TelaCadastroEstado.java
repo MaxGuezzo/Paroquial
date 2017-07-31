@@ -1,6 +1,6 @@
 package tela;
 
-import componente.MeuCampoCheckBox;
+import componente.MeuCampoCpf;
 import componente.MeuCampoInteiro;
 import componente.MeuCampoTexto;
 import dao.DaoEstado;

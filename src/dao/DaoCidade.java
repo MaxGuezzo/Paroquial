@@ -20,6 +20,7 @@ public class DaoCidade {
     public static final String SQL_PESQUISAR =
             "SELECT CIDADE.IDCIDADE, CIDADE.NOME, ESTADO.SIGLA FROM cidade, ESTADO\n" +
                 "where ESTADO.IDESTADO = CIDADE.IDESTADO ORDER BY CIDADE.NOME";
+    public static final String SQLCOMBOBOX = "SELECT IDESTADO, NOME || '-' || SIGLA FROM ESTADO ORDER BY NOME";
     
     public DaoCidade(Cidade cidade) {
         this.cidade = cidade;

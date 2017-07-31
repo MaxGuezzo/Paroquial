@@ -8,23 +8,18 @@ import pojo.Estado;
 
 public class DaoEstado {
     private Estado estado;
-    private final String SQL_INCLUIR =
-            "INSERT INTO ESTADO VALUES (?, ?, ?)";
-    private final String SQL_ALTERAR =
-            "UPDATE ESTADO SET NOME = ?, SIGLA = ?, WHERE IDESTADO = ?";
-    private final String SQL_EXCLUIR =
-            "DELETE FROM ESTADO WHERE IDESTADO = ?";
-    private final String SQL_CONSULTAR =
-            "SELECT * FROM ESTADO WHERE IDESTADO = ?";
-    public static final String SQL_PESQUISAR =
-            "SELECT IDESTADO, NOME, SIGLA FROM ESTADO ORDER BY NOME";
-    
+    private final String SQL_INCLUIR = "INSERT INTO ESTADO VALUES (?, ?, ?)";
+    private final String SQL_ALTERAR = "UPDATE ESTADO SET NOME = ?, SIGLA = ?, WHERE IDESTADO = ?";
+    private final String SQL_EXCLUIR ="DELETE FROM ESTADO WHERE IDESTADO = ?";
+    private final String SQL_CONSULTAR = "SELECT * FROM ESTADO WHERE IDESTADO = ?";
+    public static final String SQL_PESQUISAR = "SELECT IDESTADO, NOME, SIGLA FROM ESTADO ORDER BY NOME";
     public static final String SQLCOMBOBOX = "SELECT IDESTADO, NOME || '-' || SIGLA FROM ESTADO ORDER BY NOME";
     
     public String pesquisa(String texto){
         String sql = "SELECT * FROM ESTADO WHERE NOME LIKE'"+texto+"%' ORDER BY NOME";
         return(sql);
     }
+    
     public DaoEstado(Estado estado) {
         this.estado = estado;
     }

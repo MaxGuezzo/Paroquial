@@ -15,7 +15,7 @@ public class MeuCampoCheckBox extends JCheckBox implements MeuComponente {
 
     @Override
     public boolean eObrigatorio() {
-        return true;
+        return false;
     }
 
     @Override

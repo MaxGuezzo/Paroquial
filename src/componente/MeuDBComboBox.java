@@ -2,17 +2,24 @@ package componente;
 
 import banco.Conexao;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import tela.TelaCadastro;
+import tela.TelaCadastroCidade;
+import tela.TelaCadastroEstado;
+import static tela.TelaPrincipal.jdp;
 
-public class MeuDBComboBox extends JPanel implements MeuComponente {
+public class MeuDBComboBox extends JPanel implements MeuComponente, ActionListener {
     private boolean obrigatorio;
     private String sql;
     private String dica;
     private JComboBox jcb = new JComboBox();
+    public JButton jbAdicionar = new JButton("...");
     private List<Object[]> dados;
     
     public MeuDBComboBox(boolean obrigatorio, String sql, String dica) {
@@ -21,7 +28,9 @@ public class MeuDBComboBox extends JPanel implements MeuComponente {
         this.dica = dica;
         setLayout(new FlowLayout());
         add(jcb);
+        add(jbAdicionar);
         preencher();
+        jbAdicionar.addActionListener(this);
     }
     
     public void preencher() {
@@ -64,6 +73,7 @@ public class MeuDBComboBox extends JPanel implements MeuComponente {
     @Override
     public void habilitar(boolean status) {
         jcb.setEnabled(status);
+        jbAdicionar.setEnabled(status);
     }
 
     @Override
@@ -83,7 +93,14 @@ public class MeuDBComboBox extends JPanel implements MeuComponente {
 
     @Override
     public void setValor(Object valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jbAdicionar){
+        TelaCadastroCidade.chamarTela();
+        }
     }
 
 }
