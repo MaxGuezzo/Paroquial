@@ -45,6 +45,10 @@ public class MeuCampoCheckBox extends JCheckBox implements MeuComponente {
 
     @Override
     public void setValor(Object valor) {
+        boolean valor2 = ((boolean) valor);
+        if(valor2 == true){
+            
+        }
         setSelected((boolean) valor);
     }
 

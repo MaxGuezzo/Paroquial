@@ -9,7 +9,7 @@ import pojo.Colaborador;
 public class DaoColaborador {
     private Colaborador colaborador;
     private final String SQL_INCLUIR =
-            "INSERT INTO COLABORADOR VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO COLABORADOR VALUES (null,?,?,?,?,?,?,?,?,?,?,?)";
     
     private final String SQL_ALTERAR =
             "UPDATE COLABORADOR SET NOME = ?, DATANASCIMENTO = ?, TELEFONE = ?,"
@@ -38,18 +38,17 @@ public class DaoColaborador {
     public boolean incluir() {
         try {
            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_INCLUIR);
-           ps.setInt(1, colaborador.getIdcolaborador());
-           ps.setString(2, colaborador.getNome());
-           ps.setDate(3, colaborador.getDatanascimento());
-           ps.setString(4, colaborador.getTelefone());
-           ps.setString(5, colaborador.getCelular());
-           ps.setString(6, colaborador.getEndereco());
-           ps.setString(7, colaborador.getNumcasa());
-           ps.setString(8, colaborador.getBairro());
-           ps.setString(9, colaborador.getRg());
-           ps.setString(10, colaborador.getCpf());
-           ps.setString(11, colaborador.getSituacao());
-           ps.setInt(12, colaborador.getIdcidade());
+           ps.setString(1, colaborador.getNome());
+           ps.setDate(2, colaborador.getDatanascimento());
+           ps.setString(3, colaborador.getTelefone());
+           ps.setString(4, colaborador.getCelular());
+           ps.setString(5, colaborador.getEndereco());
+           ps.setString(6, colaborador.getNumcasa());
+           ps.setString(7, colaborador.getBairro());
+           ps.setString(8, colaborador.getRg());
+           ps.setString(9, colaborador.getCpf());
+           ps.setString(10, colaborador.getSituacao());
+           ps.setInt(11, colaborador.getIdcidade());
            ps.executeUpdate();
            return true;
         } catch (Exception e) {

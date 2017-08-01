@@ -39,10 +39,16 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
         try {
             sdf.setLenient(false);
             sdf.parse(getText());
-//            System.out.println(dataDoDia.before(data));
-//            data.equals(sdf.format(dataDoDia));
-            return true;
-            
+            String sHoraDia = sdf.format(dataDoDia);
+            String dataCampo = getText();
+            int comp = sHoraDia.compareTo(dataCampo);
+            System.out.println(comp);
+            if(comp < 0) {
+                
+                System.out.println("sHoraDia menor que DataCampo");
+            }
+  
+            return true;  
         } catch (Exception e) {
             return false;
         }

@@ -16,7 +16,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
     public DaoColaborador daoColaborador = new DaoColaborador(colaborador);
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(35, 50, true, "Nome");
-//    public MeuCampoData campoDatanascimento = new MeuCampoData(10, true, true, "Data de Nasc");           
+    public MeuCampoData campoDatanascimento = new MeuCampoData(10, true, true, "Data de Nasc");           
     public MeuCampoTexto campoTelefone = new MeuCampoTexto(14, 14, true, "Telefone");           
     public MeuCampoTexto campoCelular = new MeuCampoTexto(14, 14, true, "Celular");           
     public MeuCampoTexto campoEndereco = new MeuCampoTexto(22, 20, true, "Endereco");           
@@ -32,7 +32,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       super("Cadastro de Colaborador");
       adicionarComponente(1, 1, 1, 1, campoCodigo);
       adicionarComponente(1, 2, 1, 5, campoNome);
-//      adicionarComponente(1, 6, 1, 1, campoDatanascimento);
+      adicionarComponente(1, 6, 1, 1, campoDatanascimento);
       adicionarComponente(3, 1, 1, 3, campoTelefone);
       adicionarComponente(3, 4, 1, 1, campoCelular);
       adicionarComponente(3, 5, 1, 3, campoEndereco);
@@ -50,7 +50,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
    public void setPersistencia() {
       colaborador.setIdcolaborador((int) campoCodigo.getValor());
       colaborador.setNome((String) campoNome.getValor());
-//      colaborador.setDatanascimento((Date) campoDatanascimento.getValor());
+      colaborador.setDatanascimento((Date) campoDatanascimento.getValor());
       colaborador.setTelefone((String) campoTelefone.getValor());
       colaborador.setCelular((String) campoCelular.getValor());
       colaborador.setEndereco((String) campoEndereco.getValor());
@@ -58,7 +58,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       colaborador.setBairro((String) campoBairro.getValor());
       colaborador.setRg((String) campoRg.getValor());
       colaborador.setCpf((String) campoCpf.getValor());
-//      colaborador.setSituacao((String) campoSituacao.getValor());
+      colaborador.setSituacao((String) campoSituacao.getValor());
       colaborador.setIdcidade((int)campoCidade.getValor());      
    }
    
