@@ -8,8 +8,9 @@ import componente.MeuCampoTexto;
 import componente.MeuDBComboBox;
 import dao.DaoCidade;
 import dao.DaoColaborador;
-import java.sql.Date;
+import java.util.Date;
 import pojo.Colaborador;
+import static tela.TelaPrincipal.jdp;
 
 public class TelaCadastroColaborador extends TelaCadastro {
     public Colaborador colaborador = new Colaborador();
@@ -25,7 +26,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
     public MeuCampoTexto campoRg = new MeuCampoTexto(10, 12, true, "RG");           
     public MeuCampoCpf campoCpf = new MeuCampoCpf(10, true, true, "CPF");           
     public MeuCampoCheckBox campoSituacao = new MeuCampoCheckBox(true, true, "Ativo");
-    private MeuDBComboBox campoCidade = new MeuDBComboBox(true, DaoCidade.SQLCOMBOBOX, "Cidade"); 
+    private MeuDBComboBox campoCidade = new MeuDBComboBox(this, true, DaoCidade.SQLCOMBOBOX, "Cidade"); 
     
     
     public TelaCadastroColaborador() {
@@ -58,14 +59,14 @@ public class TelaCadastroColaborador extends TelaCadastro {
       colaborador.setBairro((String) campoBairro.getValor());
       colaborador.setRg((String) campoRg.getValor());
       colaborador.setCpf((String) campoCpf.getValor());
-      colaborador.setSituacao((String) campoSituacao.getValor());
+      colaborador.setSituacao((boolean) campoSituacao.getValor());
       colaborador.setIdcidade((int)campoCidade.getValor());      
    }
    
    public void getPersistencia() {
       campoCodigo.setValor(colaborador.getIdcolaborador());
       campoNome.setValor(colaborador.getNome());
-//      campoDatanascimento.setValor(colaborador.getDatanascimento());
+      campoDatanascimento.setValor( colaborador.getDatanascimento());
       campoTelefone.setValor(colaborador.getTelefone());
       campoCelular.setValor(colaborador.getCelular());
       campoEndereco.setValor(colaborador.getEndereco());
@@ -115,6 +116,14 @@ public class TelaCadastroColaborador extends TelaCadastro {
    public String pesquisa(String texto){
        String sql = daoColaborador.pesquisa(texto);
        return(sql);
+   }
+   
+    @Override
+      public void chamarTela(){
+       TelaCadastroCidade telaCadastroCidade = new TelaCadastroCidade();
+       jdp.add(telaCadastroCidade);
+       telaCadastroCidade.setLocation(50, 50);
+       jdp.moveToFront(telaCadastroCidade);
    }
 
 }

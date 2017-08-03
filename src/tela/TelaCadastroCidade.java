@@ -14,7 +14,7 @@ public class TelaCadastroCidade extends TelaCadastro {
     public DaoEstado daoEstado = new DaoEstado(estado);
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(20, 50, true, "Nome");
-    private MeuDBComboBox campoEstado = new MeuDBComboBox(true, DaoEstado.SQLCOMBOBOX, "Estado"); 
+    private MeuDBComboBox campoEstado = new MeuDBComboBox(this, true, DaoEstado.SQLCOMBOBOX, "Estado"); 
 
     
     public TelaCadastroCidade() {
@@ -72,8 +72,8 @@ public class TelaCadastroCidade extends TelaCadastro {
       getPersistencia();
       super.preencherDados(pk);
    }
-   
-   public static void chamarTela(){
+   @Override
+   public void chamarTela(){
        TelaCadastroEstado telaCadastroEstado = new TelaCadastroEstado();
        jdp.add(telaCadastroEstado);
        telaCadastroEstado.setLocation(50, 50);

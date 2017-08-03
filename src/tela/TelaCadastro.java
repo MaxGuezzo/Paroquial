@@ -160,7 +160,9 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
 
     private void cancelar() {
         estadoTela = PADRAO;
+        temDadosNaTela = false;
         habilitarCampos(false);
+        limparCampos();
         habilitarBotoes();
     }
 
@@ -241,4 +243,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
        return (""); 
     }
     
+    public void chamarTela(){
+    
+    }
 }

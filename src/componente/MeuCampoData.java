@@ -1,7 +1,11 @@
 package componente;
 
 import java.util.Date;
+import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -32,10 +36,7 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
     }
 
     @Override
-    public boolean eValido() {
-        
-        String data = getText();
-        
+    public boolean eValido() {  
         try {
             sdf.setLenient(false);
             sdf.parse(getText());
@@ -61,7 +62,8 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
 
     @Override
     public void limpar() {
-        setText("");
+        String sHoraDia = sdf.format(dataDoDia);
+        setText(sHoraDia);
     }
 
     @Override
@@ -71,12 +73,19 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
 
     @Override
     public Object getValor() {
-        return getText();
+        try {
+            java.sql.Date data = new java.sql.Date(sdf.parse(getText()).getTime());
+            return data;
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Nao foi possivel converter o campo data");
+        }
+        return false;
     }
 
     @Override
     public void setValor(Object valor) {
-        setText((String) valor);
+        String data = sdf.format(valor);
+        setText (data);
     }
 
     @Override

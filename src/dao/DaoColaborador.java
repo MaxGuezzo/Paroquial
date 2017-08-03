@@ -1,8 +1,10 @@
 package dao;
 
 import banco.Conexao;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import pojo.Colaborador;
 
@@ -39,7 +41,7 @@ public class DaoColaborador {
         try {
            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_INCLUIR);
            ps.setString(1, colaborador.getNome());
-           ps.setDate(2, colaborador.getDatanascimento());
+           ps.setDate(2, (Date) colaborador.getDatanascimento());
            ps.setString(3, colaborador.getTelefone());
            ps.setString(4, colaborador.getCelular());
            ps.setString(5, colaborador.getEndereco());
@@ -47,11 +49,19 @@ public class DaoColaborador {
            ps.setString(7, colaborador.getBairro());
            ps.setString(8, colaborador.getRg());
            ps.setString(9, colaborador.getCpf());
-           ps.setString(10, colaborador.getSituacao());
+           ps.setString(10, colaborador.getSituacao() ? "A" : "I");
            ps.setInt(11, colaborador.getIdcidade());
            ps.executeUpdate();
            return true;
-        } catch (Exception e) {
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if(e.getErrorCode() == 335544665  ){
+                JOptionPane.showMessageDialog(null, "Este CPF ja esta cadastrado no sistema.");
+            }
+            return false;
+        }
+        catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Houve um problema ao tentar incluir o colaborador.");
             return false;
@@ -62,7 +72,7 @@ public class DaoColaborador {
         try {
            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
            ps.setString(1, colaborador.getNome());
-           ps.setDate(2, colaborador.getDatanascimento());
+           ps.setDate(2, (Date) colaborador.getDatanascimento());
            ps.setString(3, colaborador.getTelefone());
            ps.setString(4, colaborador.getCelular());
            ps.setString(5, colaborador.getEndereco());
@@ -70,7 +80,7 @@ public class DaoColaborador {
            ps.setString(7, colaborador.getBairro());
            ps.setString(8, colaborador.getRg());
            ps.setString(9, colaborador.getCpf());
-           ps.setString(10, colaborador.getSituacao());
+           ps.setString(10, colaborador.getSituacao() ? "A" : "I");
            ps.setInt(11, colaborador.getIdcidade());
            ps.setInt(12, colaborador.getIdcolaborador());
            ps.executeUpdate();
@@ -110,7 +120,7 @@ public class DaoColaborador {
                colaborador.setBairro(rs.getString(8));
                colaborador.setRg(rs.getString(9));
                colaborador.setCpf(rs.getString(10));
-               colaborador.setSituacao(rs.getString(11));
+               colaborador.setSituacao(rs.getString(11).equals("A"));
                colaborador.setIdcidade(rs.getInt(12));
            }
            return true;

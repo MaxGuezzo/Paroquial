@@ -15,6 +15,7 @@ import tela.TelaCadastroEstado;
 import static tela.TelaPrincipal.jdp;
 
 public class MeuDBComboBox extends JPanel implements MeuComponente, ActionListener {
+    private TelaCadastro telaChamadora;
     private boolean obrigatorio;
     private String sql;
     private String dica;
@@ -22,7 +23,8 @@ public class MeuDBComboBox extends JPanel implements MeuComponente, ActionListen
     public JButton jbAdicionar = new JButton("...");
     private List<Object[]> dados;
     
-    public MeuDBComboBox(boolean obrigatorio, String sql, String dica) {
+    public MeuDBComboBox(TelaCadastro telaChamadora, boolean obrigatorio, String sql, String dica) {
+        this.telaChamadora = telaChamadora;
         this.obrigatorio = obrigatorio;
         this.sql = sql;
         this.dica = dica;
@@ -99,7 +101,7 @@ public class MeuDBComboBox extends JPanel implements MeuComponente, ActionListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jbAdicionar){
-        TelaCadastroCidade.chamarTela();
+        telaChamadora.chamarTela();
         }
     }
 

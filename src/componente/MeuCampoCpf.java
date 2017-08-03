@@ -11,7 +11,6 @@ public class MeuCampoCpf extends JFormattedTextField implements MeuComponente {
     private boolean obrigatorio;
     private boolean podeHabilitar;
     private String nome;
-    private SimpleDateFormat sdf = new SimpleDateFormat("###.###.###-##");
 
     public MeuCampoCpf(int tamanho, boolean obrigatorio, boolean podeHabilitar,
             String nome) {
@@ -38,6 +37,7 @@ public class MeuCampoCpf extends JFormattedTextField implements MeuComponente {
 
         String texto = getText();
         String CPF = (texto.replace(".", "").replace("-", ""));
+
         if (CPF.equals("00000000000") || CPF.equals("11111111111")
                 || CPF.equals("22222222222") || CPF.equals("33333333333")
                 || CPF.equals("44444444444") || CPF.equals("55555555555")
@@ -114,7 +114,7 @@ public class MeuCampoCpf extends JFormattedTextField implements MeuComponente {
 
     @Override
     public void setValor(Object valor) {
-        setText("" + (int) valor);
+        setText("" + valor);
     }
 
     @Override
