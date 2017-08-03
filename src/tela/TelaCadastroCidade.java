@@ -1,17 +1,16 @@
 package tela;
 
-import com.sun.glass.ui.Cursor;
 import componente.MeuCampoInteiro;
 import componente.MeuCampoTexto;
 import componente.MeuDBComboBox;
 import dao.DaoCidade;
 import dao.DaoEstado;
-import pojo.Estado;
+import pojo.Cidade;
 import static tela.TelaPrincipal.jdp;
 
 public class TelaCadastroCidade extends TelaCadastro {
-    public Estado estado = new Estado();
-    public DaoEstado daoEstado = new DaoEstado(estado);
+    public Cidade cidade = new Cidade();
+    public DaoCidade daoCidade = new DaoCidade(cidade);
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(20, 50, true, "Nome");
     private MeuDBComboBox campoEstado = new MeuDBComboBox(this, true, DaoEstado.SQLCOMBOBOX, "Estado"); 
@@ -27,33 +26,33 @@ public class TelaCadastroCidade extends TelaCadastro {
    }
     
    public void setPersistencia() {
-      estado.setIdestado((int) campoCodigo.getValor());
-      estado.setNome((String) campoNome.getValor());
-      estado.setSigla((String) campoEstado.getValor());      
+      cidade.setIdestado((int) campoCodigo.getValor());
+      cidade.setNome((String) campoNome.getValor());
+      cidade.setIdestado((int) campoEstado.getValor());      
    }
    
    public void getPersistencia() {
-      campoCodigo.setValor(estado.getIdestado());
-      campoNome.setValor(estado.getNome());
-      campoEstado.setValor(estado.getSigla());   
+      campoCodigo.setValor(cidade.getIdestado());
+      campoNome.setValor(cidade.getNome());
+      campoEstado.setValor(cidade.getIdestado());   
    }
    
    @Override
    public boolean incluirBD() {
       setPersistencia();
-      return daoEstado.incluir();
+      return daoCidade.incluir();
    }
    
    @Override
    public boolean alterarBD() {
       setPersistencia();
-      return daoEstado.alterar();       
+      return daoCidade.alterar();       
    }
    
    @Override
    public boolean excluirBD() {
       setPersistencia();
-      return daoEstado.excluir();       
+      return daoCidade.excluir();       
    }
 
    @Override
@@ -67,8 +66,8 @@ public class TelaCadastroCidade extends TelaCadastro {
    
     @Override
    public void preencherDados(int pk) {
-      estado.setIdestado(pk);
-      daoEstado.consultar();
+      cidade.setIdestado(pk);
+      daoCidade.consultar();
       getPersistencia();
       super.preencherDados(pk);
    }
