@@ -10,7 +10,7 @@ import pojo.Cidade;
 public class DaoCidade {
     private Cidade cidade;
     private final String SQL_INCLUIR =
-            "INSERT INTO CIDADE VALUES (?, ?, ?)";
+            "INSERT INTO CIDADE VALUES (null, ?, ?)";
     private final String SQL_ALTERAR =
             "UPDATE CIDADE SET NOME = ?, IDESTADO = ?, WHERE IDCIDADE = ?";
     private final String SQL_EXCLUIR =
@@ -29,8 +29,8 @@ public class DaoCidade {
     public boolean incluir() {
         try {
            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_INCLUIR);
-           ps.setInt(1, cidade.getIdestado());
-           ps.setString(2, cidade.getNome());
+           ps.setString(1, cidade.getNome());
+           ps.setInt(2, cidade.getIdestado());
            ps.executeUpdate();
            return true;
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class DaoCidade {
            PreparedStatement ps = Conexao.getConexao().prepareStatement(SQL_ALTERAR);
            ps.setString(1, cidade.getNome());
            ps.setInt(2, cidade.getIdestado());
-           ps.setInt(4, cidade.getIdcidade());
+           ps.setInt(3, cidade.getIdcidade());
            ps.executeUpdate();
            return true;
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class DaoCidade {
            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir o Estado.");
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir a Cidade.");
             return false;
         }
     }       
@@ -79,7 +79,7 @@ public class DaoCidade {
            }
            return true;
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "Não foi possível consultar o estado.");
+           JOptionPane.showMessageDialog(null, "Não foi possível consultar a Cidade.");
            e.printStackTrace();
            return false;
         }

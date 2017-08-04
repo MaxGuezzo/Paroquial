@@ -26,13 +26,16 @@ public class TelaCadastroCidade extends TelaCadastro {
    }
     
    public void setPersistencia() {
-      cidade.setIdestado((int) campoCodigo.getValor());
+      cidade.setIdcidade((int) campoCodigo.getValor());
       cidade.setNome((String) campoNome.getValor());
       cidade.setIdestado((int) campoEstado.getValor());      
    }
    
    public void getPersistencia() {
-      campoCodigo.setValor(cidade.getIdestado());
+       System.out.println("Vindo do pojo:"+cidade.getIdcidade());
+       System.out.println("Vindo do pojo:"+cidade.getNome());
+       System.out.println("Vindo do pojo:"+cidade.getIdestado());
+      campoCodigo.setValor(cidade.getIdcidade());
       campoNome.setValor(cidade.getNome());
       campoEstado.setValor(cidade.getIdestado());   
    }
@@ -66,7 +69,7 @@ public class TelaCadastroCidade extends TelaCadastro {
    
     @Override
    public void preencherDados(int pk) {
-      cidade.setIdestado(pk);
+      cidade.setIdcidade(pk);
       daoCidade.consultar();
       getPersistencia();
       super.preencherDados(pk);

@@ -42,17 +42,17 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
             sdf.parse(getText());
             String sHoraDia = sdf.format(dataDoDia);
             String dataCampo = getText();
-            int comp = sHoraDia.compareTo(dataCampo);
+            int comp = dataCampo.compareTo(sHoraDia);
             System.out.println(comp);
-            if(comp < 0) {
-                
-                System.out.println("sHoraDia menor que DataCampo");
-            }
-  
-            return true;  
+            if(comp <= 0) {
+                System.out.println("Data do campo menor que a hora do sistema");
+                return true; 
+            }  
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "A data:"+getText()+" esta maio que a data atual.");
             return false;
         }
+        return false;
     }
 
     @Override
