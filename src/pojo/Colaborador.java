@@ -16,6 +16,7 @@ public class Colaborador {
     private String cpf;
     private boolean situacao;
     private int idcidade;
+    private Date datacadastro;
 
     public int getIdcolaborador() {
         return idcolaborador;
@@ -111,6 +112,14 @@ public class Colaborador {
 
     public void setIdcidade(int idcidade) {
         this.idcidade = idcidade;
+    }
+
+    public Date getDatacadastro() {
+        return datacadastro;
+    }
+
+    public void setDatacadastro(Date datacadastro) {
+        this.datacadastro = datacadastro;
     }
 
 

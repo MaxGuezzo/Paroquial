@@ -26,7 +26,8 @@ public class TelaCadastroColaborador extends TelaCadastro {
     public MeuCampoTexto campoRg = new MeuCampoTexto(10, 12, true, "RG");           
     public MeuCampoCpf campoCpf = new MeuCampoCpf(10, true, true, "CPF");           
     public MeuCampoCheckBox campoSituacao = new MeuCampoCheckBox(true, true, "Ativo");
-    private MeuDBComboBox campoCidade = new MeuDBComboBox(this, true, DaoCidade.SQLCOMBOBOX, "Cidade"); 
+    private MeuDBComboBox campoCidade = new MeuDBComboBox(this, true, DaoCidade.SQLCOMBOBOX, "Cidade");
+    public MeuCampoData campoDataCadastro = new MeuCampoData(10, false, false, "Data do cadastro");    
     
     
     public TelaCadastroColaborador() {
@@ -43,6 +44,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       adicionarComponente(5, 6, 1, 1, campoCpf);
       adicionarComponente(7, 1, 1, 4, campoCidade);
       adicionarComponente(7, 5, 1, 1, campoSituacao);
+      adicionarComponente(7, 6, 1, 1, campoDataCadastro);
       habilitarCampos(false);
       pack();
    }
@@ -61,6 +63,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       colaborador.setCpf((String) campoCpf.getValor());
       colaborador.setSituacao((boolean) campoSituacao.getValor());
       colaborador.setIdcidade((int)campoCidade.getValor());      
+      colaborador.setDatacadastro((Date)campoDataCadastro.getValor());      
    }
    
    public void getPersistencia() {
@@ -76,6 +79,7 @@ public class TelaCadastroColaborador extends TelaCadastro {
       campoCpf.setValor(colaborador.getCpf());
       campoSituacao.setValor(colaborador.getSituacao());
       campoCidade.setValor(colaborador.getIdcidade());
+      campoDataCadastro.setValor(colaborador.getDatacadastro());
  
    }
    

@@ -11,12 +11,12 @@ import pojo.Colaborador;
 public class DaoColaborador {
     private Colaborador colaborador;
     private final String SQL_INCLUIR =
-            "INSERT INTO COLABORADOR VALUES (null,?,?,?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO COLABORADOR VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     private final String SQL_ALTERAR =
             "UPDATE COLABORADOR SET NOME = ?, DATANASCIMENTO = ?, TELEFONE = ?,"
             + "CELULAR = ?, ENDERECO = ?, NUMCASA = ?, BAIRRO = ?, RG = ?, CPF = ?,"
-            + "SITUACAO = ?, IDCIDADE = ? WHERE IDCOLABORADOR = ?";
+            + "SITUACAO = ?, IDCIDADE = ?, DATACADASTRO = ? WHERE IDCOLABORADOR = ?";
     
     private final String SQL_EXCLUIR =
             "DELETE FROM COLABORADOR WHERE IDCOLABORADOR = ?";
@@ -29,7 +29,7 @@ public class DaoColaborador {
             + "FROM COLABORADOR ORDER BY NOME";
                 
         public String pesquisa(String texto){
-        String sql = "SELECT * FROM COLABORADOR WHERE NOME LIKE'"+texto+"%' ORDER BY NOME";
+        String sql = "SELECT IDCOLABORADOR, NOME, CPF FROM COLABORADOR WHERE NOME LIKE'"+texto+"%' ORDER BY NOME";
         return(sql);
     }
         
@@ -51,6 +51,7 @@ public class DaoColaborador {
            ps.setString(9, colaborador.getCpf());
            ps.setString(10, colaborador.getSituacao() ? "A" : "I");
            ps.setInt(11, colaborador.getIdcidade());
+           ps.setDate(12, (Date) colaborador.getDatacadastro());
            ps.executeUpdate();
            return true;
            
@@ -82,7 +83,8 @@ public class DaoColaborador {
            ps.setString(9, colaborador.getCpf());
            ps.setString(10, colaborador.getSituacao() ? "A" : "I");
            ps.setInt(11, colaborador.getIdcidade());
-           ps.setInt(12, colaborador.getIdcolaborador());
+           ps.setDate(12, (Date) colaborador.getDatacadastro());
+           ps.setInt(13, colaborador.getIdcolaborador());
            ps.executeUpdate();
            return true;
         } catch (Exception e) {
@@ -122,6 +124,7 @@ public class DaoColaborador {
                colaborador.setCpf(rs.getString(10));
                colaborador.setSituacao(rs.getString(11).equals("A"));
                colaborador.setIdcidade(rs.getInt(12));
+               colaborador.setDatacadastro(rs.getDate(13));
            }
            return true;
         } catch (Exception e) {

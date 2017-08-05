@@ -70,8 +70,8 @@ public class TelaCadastroEstado extends TelaCadastro {
    }
    
     @Override
-   public String pesquisa(String texto){
-       String sql = daoEstado.pesquisa(texto);
+   public String pesquisa(String texto, int valor){
+       String sql = daoEstado.pesquisa(texto, valor);
        return(sql);
    }
 }

@@ -239,7 +239,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
         habilitarBotoes();
     }
     
-    public String pesquisa(String texto){
+    public String pesquisa(String texto, int valor){
        return (""); 
     }
     

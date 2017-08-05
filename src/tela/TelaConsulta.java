@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,11 +22,13 @@ import javax.swing.table.TableCellRenderer;
 
 public class TelaConsulta extends JInternalFrame implements MouseListener, KeyListener {
     private TelaCadastro telaChamadora;
-    private JPanel jppesquisa = new JPanel();
+    private JPanel jpPesquisa = new JPanel();
     private JPanel  jptabela = new JPanel();
     private JPanel  jpbotao = new JPanel();
+    private JComboBox jcb = new JComboBox();
     private MeuCampoTexto campoPesquisa = new MeuCampoTexto(30, 20, true, "Pesquisar");
     private JLabel descricao = new JLabel("Buscar:");
+    private JLabel tipoFiltro = new JLabel("Filtro:");
     private DefaultTableModel dtm = new DefaultTableModel();
     private JTable tabela = new JTable(dtm) {
         @Override
@@ -62,10 +65,12 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
             telaChamadora.pesquisaSemDados();
             return;
         }
-        jppesquisa.add(descricao);
-        jppesquisa.add(campoPesquisa);
+        jpPesquisa.add(descricao);
+        jpPesquisa.add(campoPesquisa);
+        jpPesquisa.add(tipoFiltro);
+        jpPesquisa.add(jcb);
         jptabela.add(jsp);
-        getContentPane().add("North", jppesquisa);
+        getContentPane().add("North", jpPesquisa);
         getContentPane().add("Center", jptabela);
 //        jpbotao.add(jsp);
         getContentPane().add(jsp);
@@ -76,6 +81,12 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
         centralizaTela();
         tabela.addMouseListener(this);
         campoPesquisa.addKeyListener(this);
+        preencher();
+    }
+    
+    private void preencher(){
+        jcb.addItem("Nome");
+        jcb.addItem("ID");
     }
 
     public void centralizaTela() {
@@ -143,7 +154,7 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
 
     @Override
     public void keyReleased(KeyEvent e) {
-        String sql = telaChamadora.pesquisa(campoPesquisa.getText());
+        String sql = telaChamadora.pesquisa(campoPesquisa.getText(), jcb.getSelectedIndex());
          insereDados(sql);       
      }
 

@@ -72,7 +72,7 @@ class MeuDocument extends PlainDocument {
             if ((getLength() + str.length()) > tamanho) {
                 return;
             }
-            Pattern padrao = Pattern.compile("[aA-zZ,' ']");
+            Pattern padrao = Pattern.compile("[aA-zZ,0-9' ']");
             Matcher matcher = padrao.matcher(str);
             if (!matcher.find()) {
                 return;

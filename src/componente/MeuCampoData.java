@@ -12,6 +12,7 @@ import javax.swing.text.MaskFormatter;
 
 public class MeuCampoData extends JFormattedTextField implements MeuComponente {
     private boolean obrigatorio;
+    private boolean podeHabilitar;
     private String nome;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Date dataDoDia = new Date();
@@ -19,6 +20,7 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
     public MeuCampoData(int tamanho, boolean obrigatorio, boolean podeHabilitar,
             String nome) {
         this.obrigatorio = obrigatorio;
+        this.podeHabilitar = podeHabilitar;
         this.nome = nome;
         setColumns(tamanho);
         try {
@@ -38,21 +40,22 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
     @Override
     public boolean eValido() {  
         try {
-            sdf.setLenient(false);
-            sdf.parse(getText());
-            String sHoraDia = sdf.format(dataDoDia);
-            String dataCampo = getText();
-            int comp = dataCampo.compareTo(sHoraDia);
-            System.out.println(comp);
-            if(comp <= 0) {
-                System.out.println("Data do campo menor que a hora do sistema");
-                return true; 
-            }  
+                sdf.setLenient(false);
+                sdf.parse(getText());
+                String sHoraDia = sdf.format(dataDoDia);
+                String dataCampo = getText();
+                int comp = dataCampo.compareTo(sHoraDia);
+                System.out.println(comp);
+                if(comp <= 0) {
+                    System.out.println("Data do campo menor que a hora do sistema");
+                    return true;  
+            }
+              
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "A data:"+getText()+" esta maio que a data atual.");
+            JOptionPane.showMessageDialog(null, "A data:"+getText()+" esta maior que a data atual.");
             return false;
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -62,13 +65,18 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
 
     @Override
     public void limpar() {
-        String sHoraDia = sdf.format(dataDoDia);
-        setText(sHoraDia);
+        if(podeHabilitar == false){
+            String sHoraDia = sdf.format(dataDoDia);
+            setText(sHoraDia);
+        }else{
+            setText("");
+        }
+        
     }
 
     @Override
-    public void habilitar(boolean status) {
-        setEnabled(status);
+    public void habilitar(boolean status ) {
+        setEnabled(status && podeHabilitar);
     }
 
     @Override
