@@ -9,18 +9,13 @@ import pojo.Cidade;
 
 public class DaoCidade {
     private Cidade cidade;
-    private final String SQL_INCLUIR =
-            "INSERT INTO CIDADE VALUES (null, ?, ?)";
-    private final String SQL_ALTERAR =
-            "UPDATE CIDADE SET NOME = ?, IDESTADO = ?, WHERE IDCIDADE = ?";
-    private final String SQL_EXCLUIR =
-            "DELETE FROM CIDADE WHERE IDCIDADE = ?";
-    private final String SQL_CONSULTAR =
-            "SELECT * FROM CIDADE WHERE IDCIDADE = ?";
-    public static final String SQL_PESQUISAR =
-            "SELECT CIDADE.IDCIDADE, CIDADE.NOME, ESTADO.SIGLA FROM cidade, ESTADO\n" +
-                "where ESTADO.IDESTADO = CIDADE.IDESTADO ORDER BY CIDADE.NOME";
-    public static final String SQLCOMBOBOX = "SELECT IDESTADO, NOME || '-' || SIGLA FROM ESTADO ORDER BY NOME";
+    private final String SQL_INCLUIR = "INSERT INTO CIDADE VALUES (null, ?, ?)";
+    private final String SQL_ALTERAR = "UPDATE CIDADE SET NOME = ?, IDESTADO = ?, WHERE IDCIDADE = ?";
+    private final String SQL_EXCLUIR = "DELETE FROM CIDADE WHERE IDCIDADE = ?";
+    private final String SQL_CONSULTAR = "SELECT * FROM CIDADE WHERE IDCIDADE = ?";
+    public static final String SQL_PESQUISAR = "SELECT CIDADE.IDCIDADE, CIDADE.NOME, ESTADO.SIGLA FROM cidade, ESTADO\n" +
+                                                    "where ESTADO.IDESTADO = CIDADE.IDESTADO ORDER BY CIDADE.NOME";
+    public static final String SQLCOMBOBOX = "SELECT IDCIDADE, NOME FROM CIDADE ORDER BY NOME";
     
     public DaoCidade(Cidade cidade) {
         this.cidade = cidade;
