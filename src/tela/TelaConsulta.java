@@ -41,12 +41,12 @@ public class TelaConsulta extends JInternalFrame implements MouseListener, KeyLi
                 int linha, int coluna) {
             Component c = super.prepareRenderer(renderer, linha, coluna);
             if (linha % 2 == 0) {
-                c.setBackground(Color.LIGHT_GRAY);
+                c.setBackground(Color.lightGray);
             } else {
                 c.setBackground(getBackground());
             }
             if (isCellSelected(linha, coluna)) {
-                c.setBackground(Color.YELLOW);
+                c.setBackground(Color.DARK_GRAY);
             }
             return c;
         }

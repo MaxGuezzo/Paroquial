@@ -1,6 +1,6 @@
 package pojo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Pessoa {
     private int idpessoa;
@@ -15,7 +15,7 @@ public class Pessoa {
     private String numcasa;
     private String bairro;
     private Date datacadastro;
-    private String situacao;
+    private boolean situacao;
     private int idcidade;
     private int iddizimo;
 
@@ -115,11 +115,11 @@ public class Pessoa {
         this.datacadastro = datacadastro;
     }
 
-    public String getSituacao() {
+    public boolean getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(String situacao) {
+    public void setSituacao(boolean situacao) {
         this.situacao = situacao;
     }
 

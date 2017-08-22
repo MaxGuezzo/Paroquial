@@ -1,6 +1,7 @@
 package dao;
 
 import banco.Conexao;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -10,12 +11,12 @@ import pojo.Pessoa;
 public class DaoPessoa {
     private Pessoa pessoa;
     private final String SQL_INCLUIR =
-            "INSERT INTO PESSOA VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO PESSOA VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     private final String SQL_ALTERAR =
             "UPDATE FUNCIONARIO SET NOME = ?, SEXO = ?, RG = ?, CPF = ?, DATANASCIMENTO = ?, TELEFONE = ?,"
             + "CELULAR = ?, ENDERECO = ?, NUMCASA = ?, BAIRRO = ?, DATACADASTRO = ?,"
-            + "SITUACAO = ?, IDCIDADE = ? WHERE IDPESSOA = ?";
+            + "SITUACAO = ?, IDCIDADE = ?, DATACADASTRO = ? WHERE IDPESSOA = ?";
     
     private final String SQL_EXCLUIR =
             "DELETE FROM PESSOA WHERE IDPESSOA = ?";
@@ -23,10 +24,10 @@ public class DaoPessoa {
     private final String SQL_CONSULTAR =
             "SELECT * FROM PESSOA WHERE IDPESSOA= ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
+            + "FROM CEB, COLABORADOR "
+            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
                 
     
     public DaoPessoa(Pessoa pessoa) {
@@ -40,14 +41,14 @@ public class DaoPessoa {
            ps.setString(2, pessoa.getSexo());
            ps.setString(3, pessoa.getRg());
            ps.setString(4, pessoa.getCpf());
-           ps.setDate(5, pessoa.getDatanascimento());
+           ps.setDate(5, (Date) pessoa.getDatanascimento());
            ps.setString(6, pessoa.getTelefone());
            ps.setString(7, pessoa.getCelular());
            ps.setString(8, pessoa.getEndereco());
            ps.setString(9, pessoa.getNumcasa());
            ps.setString(10, pessoa.getBairro());
-           ps.setDate(11, pessoa.getDatacadastro());
-           ps.setString(12, pessoa.getSituacao());
+           ps.setDate(11, (Date) pessoa.getDatacadastro());
+           ps.setString(12, pessoa.getSituacao() ? "A" : "I");
            ps.setInt(13, pessoa.getIdcidade());
            ps.executeUpdate();
            return true;
@@ -65,14 +66,14 @@ public class DaoPessoa {
            ps.setString(2, pessoa.getSexo());
            ps.setString(3, pessoa.getRg());
            ps.setString(4, pessoa.getCpf());
-           ps.setDate(5, pessoa.getDatanascimento());
+           ps.setDate(5, (Date) pessoa.getDatanascimento());
            ps.setString(6, pessoa.getTelefone());
            ps.setString(7, pessoa.getCelular());
            ps.setString(8, pessoa.getEndereco());
            ps.setString(9, pessoa.getNumcasa());
            ps.setString(10, pessoa.getBairro());
-           ps.setDate(11, pessoa.getDatacadastro());
-           ps.setString(12, pessoa.getSituacao());
+           ps.setDate(11, (Date) pessoa.getDatacadastro());
+           ps.setString(12, pessoa.getSituacao() ? "A" : "I");
            ps.setInt(13, pessoa.getIdcidade());
            ps.setInt(15, pessoa.getIdpessoa());
            ps.executeUpdate();
@@ -114,7 +115,7 @@ public class DaoPessoa {
                pessoa.setNumcasa(rs.getString(10));
                pessoa.setBairro(rs.getString(11));
                pessoa.setDatacadastro(rs.getDate(12));
-               pessoa.setSituacao(rs.getString(14));
+               pessoa.setSituacao(rs.getString(14).equals("A"));
                pessoa.setIdcidade(rs.getInt(15));
            }
            return true;

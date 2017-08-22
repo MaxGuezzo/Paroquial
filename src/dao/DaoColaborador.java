@@ -1,6 +1,7 @@
 package dao;
 
 import banco.Conexao;
+import componente.MeuCampoCheckBox;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +59,7 @@ public class DaoColaborador {
         } catch (SQLException e) {
             e.printStackTrace();
             if(e.getErrorCode() == 335544665  ){
-                JOptionPane.showMessageDialog(null, "Este CPF ja esta cadastrado no sistema.");
+                JOptionPane.showMessageDialog(null, "Este CPF: "+colaborador.getCpf()+" ja esta cadastrado no sistema.");
             }
             return false;
         }

@@ -32,9 +32,6 @@ public class TelaCadastroCidade extends TelaCadastro {
    }
    
    public void getPersistencia() {
-       System.out.println("Vindo do pojo:"+cidade.getIdcidade());
-       System.out.println("Vindo do pojo:"+cidade.getNome());
-       System.out.println("Vindo do pojo:"+cidade.getIdestado());
       campoCodigo.setValor(cidade.getIdcidade());
       campoNome.setValor(cidade.getNome());
       campoEstado.setValor(cidade.getIdestado());   
@@ -74,6 +71,7 @@ public class TelaCadastroCidade extends TelaCadastro {
       getPersistencia();
       super.preencherDados(pk);
    }
+   
    @Override
    public void chamarTela(){
        TelaCadastroEstado telaCadastroEstado = new TelaCadastroEstado();

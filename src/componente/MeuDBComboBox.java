@@ -10,9 +10,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import tela.TelaCadastro;
-import tela.TelaCadastroCidade;
-import tela.TelaCadastroEstado;
-import static tela.TelaPrincipal.jdp;
 
 public class MeuDBComboBox extends JPanel implements MeuComponente, ActionListener {
     private TelaCadastro telaChamadora;
