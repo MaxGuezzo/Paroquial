@@ -1,7 +1,6 @@
 package tela;
 
 import componente.MeuComponente;
-import componente.MeuDBComboBox;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -10,12 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import static javax.swing.SwingConstants.CENTER;
+import static javax.swing.SwingConstants.LEFT;
+import static javax.swing.SwingConstants.RIGHT;
+import static javax.swing.SwingConstants.TRAILING;
 
 public class TelaCadastro extends JInternalFrame implements ActionListener {
     private final int PADRAO = 0;
@@ -27,12 +33,18 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     private boolean temDadosNaTela = false;
     private JPanel jpComponentes = new JPanel();
     private JPanel jpBotoes = new JPanel();
-    private JButton jbIncluir = new JButton("Incluir");
-    private JButton jbAlterar = new JButton("Alterar");
-    private JButton jbExcluir = new JButton("Excluir");
-    private JButton jbConsultar = new JButton("Consultar");
-    private JButton jbConfirmar = new JButton("Confirmar");
-    private JButton jbCancelar = new JButton("Cancelar");
+    Icon imgIncluir = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\mais.png");
+    Icon imgAlterar = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\edit.png");
+    Icon imgExcluir = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\remove.png");
+    Icon imgConsultar = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\magnifier.png");
+    Icon imgOk = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\ok.png");
+    Icon imgSair = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\cancel.png");
+    private JButton jbIncluir = new JButton("Incluir" , imgIncluir );
+    private JButton jbAlterar = new JButton("Alterar", imgAlterar);
+    private JButton jbExcluir = new JButton("Excluir", imgExcluir);
+    private JButton jbConsultar = new JButton("Consultar", imgConsultar);
+    private JButton jbConfirmar = new JButton("Confirmar", imgOk);
+    private JButton jbCancelar = new JButton("Cancelar",imgSair);
     private List<MeuComponente> campos = new ArrayList();
 
     public TelaCadastro(String titulo) {
@@ -53,27 +65,40 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     }
 
     public void adicionarComponente(int linha, int coluna,int linhas,int colunas,
-            MeuComponente componente) {
+            MeuComponente componente, String Mensagem, boolean Informacao) {
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(-1, 5, 0, 5);
+        gbc.insets = new Insets(-1, 2, 0, 5);
         gbc.gridy = linha;
         gbc.gridx = coluna;
         gbc.gridheight = 1;
-        gbc.gridwidth = 1;
+        gbc.gridwidth =1;
         gbc.anchor = GridBagConstraints.WEST;
         String nome = "<html><body>" + componente.getNome();
+        Icon imgInfo = new ImageIcon("");
         if (componente.eObrigatorio()) {
-            nome = nome + "<font color=red>*</font>";
+            nome = nome + "<font color=red>*</font>"; 
         }
+        if(Informacao == true){
+            imgInfo = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\information.png");
+        
+        }
+
         nome = nome + ": </body></html>";
-        JLabel label = new JLabel(nome);
-        jpComponentes.add(label, gbc);
+        
+        JLabel label = new JLabel(nome,imgInfo,SwingConstants.CENTER);
+        label.setHorizontalTextPosition( SwingConstants.LEFT );
+        label.setToolTipText(Mensagem);
+        jpComponentes.add(label, gbc);        
         gbc.gridy++;
         gbc.gridheight = linhas;
         gbc.gridwidth = colunas;
         gbc.anchor = GridBagConstraints.WEST;
         jpComponentes.add((JComponent) componente, gbc);
         campos.add(componente);
+        
+        
+        
+        
     }
 
     private void adicionarBotao(JButton botao) {

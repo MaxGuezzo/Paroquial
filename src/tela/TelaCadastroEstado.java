@@ -11,13 +11,13 @@ public class TelaCadastroEstado extends TelaCadastro {
     public DaoEstado daoEstado = new DaoEstado(estado);
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(20, 50, true, "Nome");
-    public MeuCampoTexto campoSigla = new MeuCampoTexto(2, 2, true, "Sigla");           
+    public MeuCampoTexto campoSigla = new MeuCampoTexto(2, 2, false, "Sigla");           
     
     public TelaCadastroEstado() {
       super("Cadastro de Estado");
-      adicionarComponente(1, 1, 1, 1, campoCodigo);
-      adicionarComponente(3, 1, 1, 1, campoNome);
-      adicionarComponente(3, 3, 1, 1, campoSigla);
+      adicionarComponente(1, 1, 1, 1, campoCodigo, "Campo gerado automaticamente pelo sistema", true);
+      adicionarComponente(3, 1, 1, 1, campoNome , null, false);
+      adicionarComponente(3, 3, 1, 1, campoSigla , null,false);
       habilitarCampos(false);
       pack();
    }

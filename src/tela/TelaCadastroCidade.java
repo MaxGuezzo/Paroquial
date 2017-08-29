@@ -18,9 +18,9 @@ public class TelaCadastroCidade extends TelaCadastro {
     
     public TelaCadastroCidade() {
       super("Cadastro de Cidade");
-      adicionarComponente(1, 1, 1, 3, campoCodigo);
-      adicionarComponente(3, 1, 1, 1, campoNome);
-      adicionarComponente(3, 3, 1, 1, campoEstado);
+      adicionarComponente(1, 1, 1, 3, campoCodigo,null, false);
+      adicionarComponente(3, 1, 1, 1, campoNome,null, false);
+      adicionarComponente(3, 3, 1, 1, campoEstado,null, false);
       habilitarCampos(false);
       pack();
    }

@@ -14,8 +14,8 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
     private boolean obrigatorio;
     private boolean podeHabilitar;
     private String nome;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    Date dataDoDia = new Date();
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    Date dataAtual = new Date();
 
     public MeuCampoData(int tamanho, boolean obrigatorio, boolean podeHabilitar,
             String nome) {
@@ -24,7 +24,7 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
         this.nome = nome;
         setColumns(tamanho);
         try {
-            MaskFormatter mf = new MaskFormatter("##/##/####");
+            MaskFormatter mf = new MaskFormatter("####/##/##");
             mf.install(this);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não foi possível"
@@ -37,25 +37,36 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
         return obrigatorio;
     }
 
+    public boolean verificaData() {
+        String dataCampo = getText();
+        String dataDia = sdf.format(dataAtual);
+        int data = dataCampo.compareTo(dataDia);
+        if (data <= 0) {
+            System.out.println("Data validada");
+            return true;
+        } else {
+            
+            return false;
+        }
+    }
+    
+    
+    
     @Override
-    public boolean eValido() {  
+    public boolean eValido() {         
         try {
                 sdf.setLenient(false);
                 sdf.parse(getText());
-                String sHoraDia = sdf.format(dataDoDia);
-                String dataCampo = getText();
-                int comp = dataCampo.compareTo(sHoraDia);
-                System.out.println(comp);
-                if(comp <= 0) {
-                    System.out.println("Data do campo menor que a hora do sistema");
-                    return true;  
-            }
-              
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "A data:"+getText()+" esta maior que a data atual.");
+                System.out.println(verificaData());
+                if(verificaData()== true){
+                    return true;
+                }else{
+                   return false; 
+                }  
+        } catch (Exception e) { 
             return false;
         }
-        return true;
+        
     }
 
     @Override
@@ -65,13 +76,13 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
 
     @Override
     public void limpar() {
-        if(podeHabilitar == false){
-            String sHoraDia = sdf.format(dataDoDia);
-            setText(sHoraDia);
-        }else{
-            setText("");
-        }
-        
+//        if(podeHabilitar == false){
+//            String sDataDia = sdf.format(dataAtual);
+//            setText(sDataDia);
+//        }else{
+//            setText("");
+//        }
+//        
     }
 
     @Override

@@ -18,7 +18,7 @@ public class TelaCadastroPessoa extends TelaCadastro {
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(35, 50, true, "Nome");
     public MeuCampoData campoDatanascimento = new MeuCampoData(10, true, true, "Data de Nasc");
-    public MeuDBComboBox campoSexo = new MeuDBComboBox(this, true, "", "Sexo");
+    //public MeuDBComboBox campoSexo = new MeuDBComboBox(this, true, "", "Sexo");
     public MeuCampoTexto campoTelefone = new MeuCampoTexto(14, 14, true, "Telefone");           
     public MeuCampoTexto campoCelular = new MeuCampoTexto(14, 14, true, "Celular");           
     public MeuCampoTexto campoEndereco = new MeuCampoTexto(22, 20, true, "Endereco");           
@@ -28,24 +28,24 @@ public class TelaCadastroPessoa extends TelaCadastro {
     public MeuCampoCpf campoCpf = new MeuCampoCpf(10, true, true, "CPF");  
     public MeuCampoCheckBox campoSituacao = new MeuCampoCheckBox(true, true, "Ativo");
     private MeuDBComboBox campoCidade = new MeuDBComboBox(this, true, DaoCidade.SQLCOMBOBOX, "Cidade");
-    public MeuCampoData campoDataCadastro = new MeuCampoData(10, false, false, "Data do cadastro");    
+   // public MeuCampoData campoDataCadastro = new MeuCampoData(10, false, false, "Data do cadastro");    
     
     
     public TelaCadastroPessoa() {
       super("Cadastro de Pessoa");
-      adicionarComponente(1, 1, 1, 1, campoCodigo);
-      adicionarComponente(1, 2, 1, 5, campoNome);
-      adicionarComponente(1, 6, 1, 1, campoDatanascimento);
-      adicionarComponente(3, 1, 1, 3, campoTelefone);
-      adicionarComponente(3, 4, 1, 1, campoCelular);
-      adicionarComponente(3, 5, 1, 3, campoEndereco);
-      adicionarComponente(5, 1, 1, 2, campoNumcasa);
-      adicionarComponente(5, 3, 1, 2, campoBairro);
-      adicionarComponente(5, 5, 1, 1, campoRg);
-      adicionarComponente(5, 6, 1, 1, campoCpf);
-      adicionarComponente(7, 1, 1, 4, campoCidade);
-      adicionarComponente(7, 5, 1, 1, campoSituacao);
-      adicionarComponente(7, 6, 1, 1, campoDataCadastro);
+      adicionarComponente(1, 1, 1, 1, campoCodigo,null, false);
+      adicionarComponente(1, 2, 1, 5, campoNome,null, false);
+      adicionarComponente(1, 6, 1, 1, campoDatanascimento,"A data da nascimento nao pode ser maior que a data atual.", true);
+      adicionarComponente(3, 1, 1, 3, campoTelefone,null, false);
+      adicionarComponente(3, 4, 1, 1, campoCelular,null, false);
+      adicionarComponente(3, 5, 1, 3, campoEndereco,null, false);
+      adicionarComponente(5, 1, 1, 2, campoNumcasa,null, false);
+      adicionarComponente(5, 3, 1, 2, campoBairro,null, false);
+      adicionarComponente(5, 5, 1, 1, campoRg,null, false);
+      adicionarComponente(5, 6, 1, 1, campoCpf,null, false);
+      adicionarComponente(7, 1, 1, 4, campoCidade,null, false);
+      adicionarComponente(7, 5, 1, 1, campoSituacao,null, false);
+      //adicionarComponente(7, 6, 1, 1, campoDataCadastro,null, false);
       habilitarCampos(false);
       pack();
    }
@@ -64,7 +64,7 @@ public class TelaCadastroPessoa extends TelaCadastro {
       pessoa.setCpf((String) campoCpf.getValor());
       pessoa.setSituacao((boolean) campoSituacao.getValor());
       pessoa.setIdcidade((int)campoCidade.getValor());      
-      pessoa.setDatacadastro((Date)campoDataCadastro.getValor());      
+//      pessoa.setDatacadastro((Date)campoDataCadastro.getValor());      
    }
    
    public void getPersistencia() {
@@ -80,7 +80,7 @@ public class TelaCadastroPessoa extends TelaCadastro {
       campoCpf.setValor(pessoa.getCpf());
       campoSituacao.setValor(pessoa.getSituacao());
       campoCidade.setValor(pessoa.getIdcidade());
-      campoDataCadastro.setValor(pessoa.getDatacadastro());
+//      campoDataCadastro.setValor(pessoa.getDatacadastro());
  
    }
    

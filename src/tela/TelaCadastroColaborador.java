@@ -32,19 +32,19 @@ public class TelaCadastroColaborador extends TelaCadastro {
     
     public TelaCadastroColaborador() {
       super("Cadastro de Colaborador");
-      adicionarComponente(1, 1, 1, 1, campoCodigo);
-      adicionarComponente(1, 2, 1, 5, campoNome);
-      adicionarComponente(1, 6, 1, 1, campoDatanascimento);
-      adicionarComponente(3, 1, 1, 3, campoTelefone);
-      adicionarComponente(3, 4, 1, 1, campoCelular);
-      adicionarComponente(3, 5, 1, 3, campoEndereco);
-      adicionarComponente(5, 1, 1, 2, campoNumcasa);
-      adicionarComponente(5, 3, 1, 2, campoBairro);
-      adicionarComponente(5, 5, 1, 1, campoRg);
-      adicionarComponente(5, 6, 1, 1, campoCpf);
-      adicionarComponente(7, 1, 1, 4, campoCidade);
-      adicionarComponente(7, 5, 1, 1, campoSituacao);
-      adicionarComponente(7, 6, 1, 1, campoDataCadastro);
+      adicionarComponente(1, 1, 1, 1, campoCodigo,null, false);
+      adicionarComponente(1, 2, 1, 5, campoNome,null, false);
+      adicionarComponente(1, 6, 1, 1, campoDatanascimento,null, false);
+      adicionarComponente(3, 1, 1, 3, campoTelefone,null, false);
+      adicionarComponente(3, 4, 1, 1, campoCelular,null, false);
+      adicionarComponente(3, 5, 1, 3, campoEndereco,null, false);
+      adicionarComponente(5, 1, 1, 2, campoNumcasa,null, false);
+      adicionarComponente(5, 3, 1, 2, campoBairro,null, false);
+      adicionarComponente(5, 5, 1, 1, campoRg,null, false);
+      adicionarComponente(5, 6, 1, 1, campoCpf,null, false);
+      adicionarComponente(7, 1, 1, 4, campoCidade,null, false);
+      adicionarComponente(7, 5, 1, 1, campoSituacao,null, false);
+      adicionarComponente(7, 6, 1, 1, campoDataCadastro,null, false);
       habilitarCampos(false);
       pack();
    }
