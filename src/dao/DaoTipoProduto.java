@@ -10,23 +10,31 @@ import pojo.TipoProduto;
 public class DaoTipoProduto {
     private TipoProduto tipoProduto;
     private final String SQL_INCLUIR =
-            "INSERT INTO TIPOPRODUTO VALUES (?)";
+            "INSERT INTO TIPO_PRODUTO VALUES (null,?)";
     
     private final String SQL_ALTERAR =
-            "UPDATE TIPOPRODUTO SET NOME = ?, WHERE IDTIPOPRODUTO = ?";
+            "UPDATE TIPO_PRODUTO SET NOME = ? WHERE IDTIPOPRODUTO = ?";
     
     private final String SQL_EXCLUIR =
-            "DELETE FROM TIPOPRODUTO WHERE IDTIPOPRODUTO = ?";
+            "DELETE FROM TIPO_PRODUTO WHERE IDTIPOPRODUTO = ?";
     
     private final String SQL_CONSULTAR =
-            "SELECT * FROM TIPOPRODUTO WHERE IDTIPOPRODUTO = ?";
+            "SELECT * FROM TIPO_PRODUTO WHERE IDTIPOPRODUTO = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDTIPOPRODUTO, NOME FROM TIPO_PRODUTO";
                 
     
+     public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM TIPO_PRODUTO WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDTIPOPRODUTO LIKE'"+texto+"%' ORDER BY IDTIPOPRODUTO";
+        }
+        return(sql);
+    }
+     
     public DaoTipoProduto(TipoProduto tipoProduto) {
         this.tipoProduto = tipoProduto;
     }

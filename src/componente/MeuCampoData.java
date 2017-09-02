@@ -76,13 +76,13 @@ public class MeuCampoData extends JFormattedTextField implements MeuComponente {
 
     @Override
     public void limpar() {
-//        if(podeHabilitar == false){
-//            String sDataDia = sdf.format(dataAtual);
-//            setText(sDataDia);
-//        }else{
-//            setText("");
-//        }
-//        
+        if(podeHabilitar == false){
+            String sDataDia = sdf.format(dataAtual);
+            setText(sDataDia);
+        }else{
+            setText("");
+        }
+        
     }
 
     @Override

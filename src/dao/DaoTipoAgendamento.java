@@ -10,21 +10,29 @@ import pojo.TipoAgendamento;
 public class DaoTipoAgendamento {
     private TipoAgendamento tipoAgendamento;
     private final String SQL_INCLUIR =
-            "INSERT INTO TIPOAGENDAMENTO VALUES (?)";
+            "INSERT INTO TIPO_AGENDAMENTO VALUES (null,?)";
     
     private final String SQL_ALTERAR =
-            "UPDATE TIPOAGENDAMENTO SET NOME = ?, WHERE IDTIPOAGENDAMENTO = ?";
+            "UPDATE TIPO_AGENDAMENTO SET NOME = ? WHERE IDTIPOAGENDAMENTO = ?";
     
     private final String SQL_EXCLUIR =
-            "DELETE FROM TIPOAGENDAMENTO WHERE IDTIPOAGENDAMENTO = ?";
+            "DELETE FROM TIPO_AGENDAMENTO WHERE IDTIPOAGENDAMENTO = ?";
     
     private final String SQL_CONSULTAR =
-            "SELECT * FROM TIPOAGENDAMENTO WHERE IDTIPOAGENDAMENTO = ?";
+            "SELECT * FROM TIPO_AGENDAMENTO WHERE IDTIPOAGENDAMENTO = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDTIPOAGENDAMENTO, NOME FROM TIPO_AGENDAMENTO";
+    
+    public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM TIPO_AGENDAMENTO WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDTIPOAGENDAMENTO LIKE'"+texto+"%' ORDER BY IDTIPOAGENDAMENTO";
+        }
+        return(sql);
+    }
                 
     
     public DaoTipoAgendamento(TipoAgendamento tipoAgendamento) {

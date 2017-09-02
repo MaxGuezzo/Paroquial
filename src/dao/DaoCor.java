@@ -13,7 +13,7 @@ public class DaoCor {
             "INSERT INTO COR VALUES (?,?)";
     
     private final String SQL_ALTERAR =
-            "UPDATE COR SET NOME = ?, WHERE IDCOR = ?";
+            "UPDATE COR SET NOME = ? WHERE IDCOR = ?";
     
     private final String SQL_EXCLUIR =
             "DELETE FROM COR WHERE IDCOR = ?";
@@ -21,11 +21,19 @@ public class DaoCor {
     private final String SQL_CONSULTAR =
             "SELECT * FROM COR WHERE IDCOR = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDCOR, NOME FROM COR";
                 
+    
+    public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM COR WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDCOR LIKE'"+texto+"%' ORDER BY IDCOR";
+        }
+        return(sql);
+    }           
     
     public DaoCor(Cor cor) {
         this.cor = cor;

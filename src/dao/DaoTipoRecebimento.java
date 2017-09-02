@@ -10,26 +10,37 @@ import pojo.TipoRecebimento;
 public class DaoTipoRecebimento {
     private TipoRecebimento tipoRecebimento;
     private final String SQL_INCLUIR =
-            "INSERT INTO TIPORECEBIMENTO VALUES (?)";
+            "INSERT INTO TIPO_RECEBIMENTO VALUES (null,?)";
     
     private final String SQL_ALTERAR =
-            "UPDATE TIPORECEBIMENTO SET NOME = ?, WHERE IDTIPORECEBIMENTO = ?";
+            "UPDATE TIPO_RECEBIMENTO SET NOME = ? WHERE IDTIPORECEBIMENTO = ?";
     
     private final String SQL_EXCLUIR =
-            "DELETE FROM TIPORECEBIMENTO WHERE IDTIPORECEBIMENTO = ?";
+            "DELETE FROM TIPO_RECEBIMENTO WHERE IDTIPORECEBIMENTO = ?";
     
     private final String SQL_CONSULTAR =
-            "SELECT * FROM TIPORECEBIMENTO WHERE IDTIPORECEBIMENTO = ?";
+            "SELECT * FROM TIPO_RECEBIMENTO WHERE IDTIPORECEBIMENTO = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDTIPORECEBIMENTO, NOME FROM TIPO_RECEBIMENTO";
                 
+    
+    
+    public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM TIPO_RECEBIMENTO WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDTIPORECEBIMENTO LIKE'"+texto+"%' ORDER BY IDTIPORECEBIEMNTO";
+        }
+        return(sql);
+    }
     
     public DaoTipoRecebimento(TipoRecebimento tipoRecebimento) {
         this.tipoRecebimento = tipoRecebimento;
     }
+    
+    
     
     public boolean incluir() {
         try {

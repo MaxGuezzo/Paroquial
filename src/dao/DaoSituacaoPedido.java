@@ -10,23 +10,30 @@ import pojo.SituacaoPedido;
 public class DaoSituacaoPedido {
     private SituacaoPedido situacaoPedido;
     private final String SQL_INCLUIR =
-            "INSERT INTO SITUACAOPEDIDO VALUES (?)";
+            "INSERT INTO SITUACAO_PEDIDO VALUES (null,?)";
     
     private final String SQL_ALTERAR =
-            "UPDATE SITUACAOPEDIDO SET NOME = ?, WHERE IDSITUACAOPEDIDO = ?";
+            "UPDATE SITUACAO_PEDIDO SET NOME = ? WHERE IDSITUACAOPEDIDO = ?";
     
     private final String SQL_EXCLUIR =
-            "DELETE FROM SITUACAOPEDIDO WHERE IDSITUACAOPEDIDO = ?";
+            "DELETE FROM SITUACAO_PEDIDO WHERE IDSITUACAOPEDIDO = ?";
     
     private final String SQL_CONSULTAR =
-            "SELECT * FROM SITUACAOPEDIDO WHERE IDSITUACAOPEDIDO = ?";
+            "SELECT * FROM SITUACAO_PEDIDO WHERE IDSITUACAOPEDIDO = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDSITUACAOPEDIDO, NOME FROM SITUACAO_PEDIDO";
                 
     
+    public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM SITUACAO_PEDIDOO WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDSITUACAOPEDIDO LIKE'"+texto+"%' ORDER BY IDSITUACAOPEDIDO";
+        }
+        return(sql);
+    }
     public DaoSituacaoPedido(SituacaoPedido situacaoPedido) {
         this.situacaoPedido = situacaoPedido;
     }

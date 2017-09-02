@@ -33,12 +33,12 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
     private boolean temDadosNaTela = false;
     private JPanel jpComponentes = new JPanel();
     private JPanel jpBotoes = new JPanel();
-    Icon imgIncluir = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\mais.png");
-    Icon imgAlterar = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\edit.png");
-    Icon imgExcluir = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\remove.png");
-    Icon imgConsultar = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\magnifier.png");
-    Icon imgOk = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\ok.png");
-    Icon imgSair = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\cancel.png");
+    Icon imgIncluir = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\mais.png");
+    Icon imgAlterar = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\edit.png");
+    Icon imgExcluir = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\remove.png");
+    Icon imgConsultar = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\magnifier.png");
+    Icon imgOk = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\ok.png");
+    Icon imgSair = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\cancel.png");
     private JButton jbIncluir = new JButton("Incluir" , imgIncluir );
     private JButton jbAlterar = new JButton("Alterar", imgAlterar);
     private JButton jbExcluir = new JButton("Excluir", imgExcluir);
@@ -79,7 +79,7 @@ public class TelaCadastro extends JInternalFrame implements ActionListener {
             nome = nome + "<font color=red>*</font>"; 
         }
         if(Informacao == true){
-            imgInfo = new ImageIcon("F:\\User\\Documents\\NetBeansProjects\\Paroquial\\src\\icone\\information.png");
+            imgInfo = new ImageIcon(System.getProperty("user.dir")+"\\src\\icone\\information.png");
         
         }
 

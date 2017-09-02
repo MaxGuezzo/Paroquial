@@ -1,6 +1,7 @@
 package tela;
 
 import componente.MeuCampoCheckBox;
+import componente.MeuCampoComboBox;
 import componente.MeuCampoCpf;
 import componente.MeuCampoData;
 import componente.MeuCampoInteiro;
@@ -10,6 +11,7 @@ import dao.DaoCidade;
 import dao.DaoPessoa;
 import java.util.Date;
 import pojo.Pessoa;
+import java.lang.String;
 import static tela.TelaPrincipal.jdp;
 
 public class TelaCadastroPessoa extends TelaCadastro {
@@ -18,7 +20,7 @@ public class TelaCadastroPessoa extends TelaCadastro {
     public MeuCampoInteiro campoCodigo = new MeuCampoInteiro(5, true, false, "Código");
     public MeuCampoTexto campoNome = new MeuCampoTexto(35, 50, true, "Nome");
     public MeuCampoData campoDatanascimento = new MeuCampoData(10, true, true, "Data de Nasc");
-    //public MeuDBComboBox campoSexo = new MeuDBComboBox(this, true, "", "Sexo");
+    public MeuCampoComboBox campoSexo = new MeuCampoComboBox(true, new String[]{"Masculino","Feminino"} , "Sexo");
     public MeuCampoTexto campoTelefone = new MeuCampoTexto(14, 14, true, "Telefone");           
     public MeuCampoTexto campoCelular = new MeuCampoTexto(14, 14, true, "Celular");           
     public MeuCampoTexto campoEndereco = new MeuCampoTexto(22, 20, true, "Endereco");           
@@ -28,7 +30,7 @@ public class TelaCadastroPessoa extends TelaCadastro {
     public MeuCampoCpf campoCpf = new MeuCampoCpf(10, true, true, "CPF");  
     public MeuCampoCheckBox campoSituacao = new MeuCampoCheckBox(true, true, "Ativo");
     private MeuDBComboBox campoCidade = new MeuDBComboBox(this, true, DaoCidade.SQLCOMBOBOX, "Cidade");
-   // public MeuCampoData campoDataCadastro = new MeuCampoData(10, false, false, "Data do cadastro");    
+    public MeuCampoData campoDataCadastro = new MeuCampoData(10, false, false, "Data do cadastro");    
     
     
     public TelaCadastroPessoa() {
@@ -43,9 +45,10 @@ public class TelaCadastroPessoa extends TelaCadastro {
       adicionarComponente(5, 3, 1, 2, campoBairro,null, false);
       adicionarComponente(5, 5, 1, 1, campoRg,null, false);
       adicionarComponente(5, 6, 1, 1, campoCpf,null, false);
-      adicionarComponente(7, 1, 1, 4, campoCidade,null, false);
-      adicionarComponente(7, 5, 1, 1, campoSituacao,null, false);
-      //adicionarComponente(7, 6, 1, 1, campoDataCadastro,null, false);
+      adicionarComponente(7, 1, 1, 3, campoCidade,null, false);
+      adicionarComponente(7, 4, 1, 2, campoSexo,null, false);
+      adicionarComponente(7, 5, 1, 1, campoDataCadastro,null, false);
+      adicionarComponente(7, 6, 1, 1, campoSituacao,null, false);
       habilitarCampos(false);
       pack();
    }

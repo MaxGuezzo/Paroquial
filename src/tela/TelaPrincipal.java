@@ -80,25 +80,48 @@ public class TelaPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == jmiEstado){
-            TelaCadastroEstado telaCadastroEstado =
-                    new TelaCadastroEstado();
+            TelaCadastroEstado telaCadastroEstado = new TelaCadastroEstado();
             jdp.add(telaCadastroEstado);
-        }
-         if(e.getSource() == jmiCidade){
-            TelaCadastroCidade telaCadastroCidade =
-                    new TelaCadastroCidade();
+        }else if(e.getSource() == jmiCidade){
+            TelaCadastroCidade telaCadastroCidade = new TelaCadastroCidade();
             jdp.add(telaCadastroCidade);
-        }
-         if(e.getSource() == jmiColaborador){
-            TelaCadastroColaborador telaCadastroColaborador =
-                    new TelaCadastroColaborador();
+        }else if(e.getSource() == jmiColaborador){
+            TelaCadastroColaborador telaCadastroColaborador = new TelaCadastroColaborador();
             jdp.add(telaCadastroColaborador);
-        }
-         if(e.getSource() == jmiPessoa){
-            TelaCadastroPessoa telaCadastroPessoa =
-                    new TelaCadastroPessoa();
+        }else if(e.getSource() == jmiPessoa){
+            TelaCadastroPessoa telaCadastroPessoa = new TelaCadastroPessoa();
             jdp.add(telaCadastroPessoa);
-        }
+        }else if(e.getSource() == jmiCor){
+            TelaCadastroCor telaCadastroCor = new TelaCadastroCor();
+            jdp.add(telaCadastroCor);
+        }else if(e.getSource() == jmiProduto){
+            TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
+            jdp.add(telaCadastroProduto);
+        }else if(e.getSource() == jmiTipoProduto){
+            TelaCadastroTipoProduto telaCadastroTipoProduto = new TelaCadastroTipoProduto();
+            jdp.add(telaCadastroTipoProduto);
+        }else if(e.getSource() == jmiHospital){
+            TelaCadastroHospital telaCadastroHospital = new TelaCadastroHospital();
+            jdp.add(telaCadastroHospital);
+        }else if(e.getSource() == jmiTipoAgendamento){
+            TelaCadastroTipoAgendamento telaCadastroTipoAgendamento = new TelaCadastroTipoAgendamento();
+            jdp.add(telaCadastroTipoAgendamento);
+        }else if(e.getSource() == jmiMissa){
+            TelaCadastroMissa telaCadastroMissa = new TelaCadastroMissa();
+            jdp.add(telaCadastroMissa);
+        }else if(e.getSource() == jmiSituacaoPedido){
+            TelaCadastroSituacaoPedido telaCadastroSituacaoPedido = new TelaCadastroSituacaoPedido();
+            jdp.add(telaCadastroSituacaoPedido);
+        }else if(e.getSource() == jmiTipoRecebimento){
+            TelaCadastroTipoRecebimento telaCadastroTipoRecebimento = new TelaCadastroTipoRecebimento();
+            jdp.add(telaCadastroTipoRecebimento);
+        }else if(e.getSource() == jmiCeb){
+            TelaCadastroCeb telaCadastroCeb = new TelaCadastroCeb();
+            jdp.add(telaCadastroCeb);
+        }else if(e.getSource() == jmiComunidade){
+            TelaCadastroComunidade telaCadastroComunidade = new TelaCadastroComunidade();
+            jdp.add(telaCadastroComunidade);
+        }    
     }
 }
 

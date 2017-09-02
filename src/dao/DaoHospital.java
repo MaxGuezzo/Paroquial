@@ -10,23 +10,31 @@ import pojo.Hospital;
 public class DaoHospital {
     private Hospital hospital;
     private final String SQL_INCLUIR =
-            "INSERT INTO HOSPITAL VALUES (?,?,?,?,?,?,?)";
+            "INSERT INTO HOSPITAL VALUES (null,?,?,?,?,?,?,?)";
     
     private final String SQL_ALTERAR =
             "UPDATE HOSPITAL SET NOME = ?, ENDERECO = ?, NUMCASA = ?, BAIRRO = ?, TELEFONE = ?,"
-            + "COMPLEMENTO = ?, IDCIDADE = ? WHERE IDCIDADE = ?";
+            + "COMPLEMENTO = ?, IDCIDADE = ? WHERE IDHOSPITAL = ?";
     
     private final String SQL_EXCLUIR =
             "DELETE FROM HOSPITAL WHERE IDHOSPITAL = ?";
     
     private final String SQL_CONSULTAR =
-            "SELECT * FROM ENFERMO WHERE IDHOSPITAL = ?";
+            "SELECT * FROM HOSPITAL WHERE IDHOSPITAL = ?";
     
-//    public static final String SQL_PESQUISAR =
-//            "SELECT CEB.IDCEB, CEB.NOME, COLABORADOR.NOME "
-//            + "FROM CEB, COLABORADOR "
-//            + "WHERE COLABORADOR.IDCOLABORADOR = CEB.IDCOLABORADORORDER BY CEB.NOME";
+    public static final String SQL_PESQUISAR =
+            "SELECT IDHOSPITAL, NOME, TELEFONE FROM HOSPITAL ORDER BY NOME";
                 
+    
+      public String pesquisa(String texto, int valor){
+        String sql = "SELECT * FROM HOSPITAL WHERE";
+        if(valor == 0){
+            sql = sql+" NOME LIKE'"+texto+"%' ORDER BY NOME";
+        }else{
+            sql = sql+" IDHOSPITAL LIKE'"+texto+"%' ORDER BY IDHOSPITAL";
+        }
+        return(sql);
+    }
     
     public DaoHospital(Hospital hospital) {
         this.hospital = hospital;
